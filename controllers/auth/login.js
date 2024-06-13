@@ -27,8 +27,7 @@ const login = async (req, res,next) => {
 
     // Generate an access token with JWT
     const accessToken = jwt.sign(
-      { id: user.id, email: user.email,name:user.name,
-        parent_user:user.parent_user},
+      { id: user.id, email: user.email,name:user.name,org_id:user.org_id},
         key,
       { expiresIn: '2d' }
     );

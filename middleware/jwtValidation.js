@@ -4,7 +4,7 @@ const createError = require('http-errors');
 const validateToken = (req, res, next) => {
   try {
     // Get the access token from the request headers
-    const accessToken = req.headers.accesstoken;
+    const accessToken = req.headers.authorization;
     // If the access token is missing, return a 401 error
     if (!accessToken) {
       throw createError(401, 'Access token is missing');

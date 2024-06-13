@@ -19,7 +19,7 @@ const create = async (req, res, next) => {
     // Create the user with the hashed password
     const user = await User.create({ name, email, password: hashedPassword,isSuper:1,metaData });
     const org = await Org.create({email,ownerId:user.id});
-     await user.update({parent_user:user.id,org_id:org.id},{where:{id:user.id}});
+     await user.update({org_id:org.id},{where:{id:user.id}});
     const accessToken =  jwt.sign(
       { id: user.id, email: user.email,org_id:org.id},
       jwt_secret,

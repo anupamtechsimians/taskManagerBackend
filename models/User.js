@@ -28,15 +28,13 @@ const User = sequelize.define(
       allowNull: true,
       default: true,
     },
-    parent_user: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    isDeleted: {
+    is_deleted: {
       type: DataTypes.BOOLEAN,
+      defaultValue:false,
       allowNull: true,
     },
     org_id:{type:DataTypes.INTEGER},
+    created_by:{type:DataTypes.INTEGER},
     metaData: {
       type: DataTypes.JSON,
       allowNull: true,
