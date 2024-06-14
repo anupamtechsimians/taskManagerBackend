@@ -11,7 +11,7 @@ const login = async (req, res,next) => {
     const { email, password } = req.body;
 
     // Find the user by email
-    const user = await User.findOne({ email: email});
+    const user = await User.findOne({where:{ email: email}});
     // If the user doesn't exist, return a 404 error
     if (!user) {
       return res.status(400).json({message:"User not found"})
