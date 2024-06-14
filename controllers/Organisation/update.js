@@ -12,6 +12,7 @@ const createOrg  = async (req, res, next) => {
             if(!org){
                 return res.status(400).json({message:"User Not Found"});
             }
+            value.setup_flag=true;
              await Organisation.update(value,{where:{id}});
         res.status(200).json({updated:true});
       } catch (error) {

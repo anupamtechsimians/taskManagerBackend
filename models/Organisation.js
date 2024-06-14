@@ -50,7 +50,12 @@ const Organisation = sequelize.define('organisation', {
         }
     },
     metaData:
-    {type:DataTypes.JSON, allowNull: true}
+    {type:DataTypes.JSON, allowNull: true},
+    setup_flag: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue:false
+    },
 }, {
     tableName: 'organisations',
     timestamps: true
