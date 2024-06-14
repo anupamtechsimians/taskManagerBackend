@@ -2,7 +2,6 @@ const Joi = require('joi');
 
 const OrganisationCreateSchema = Joi.object({
   name: Joi.string().required(),
-  strength: Joi.string().valid('0-100', '101-500', '501-1000', '1001-10000'),
   address: Joi.string().required(),
   city: Joi.string().optional(),
   state: Joi.string().optional(),
@@ -15,8 +14,8 @@ const OrganisationCreateSchema = Joi.object({
 });
 const OrganisationUpdateSchema = Joi.object({
   name: Joi.string().allow(null, '').optional(),
-  strength: Joi.string().allow(null, '').valid('0-100', '101-500', '501-1000', '1001-10000'),
   address: Joi.string().allow(null, '').optional(),
+  domain: Joi.string(),
   city: Joi.string().allow(null, '').optional(),
   state: Joi.string().allow(null, '').optional(),
   country: Joi.string().allow(null, '').optional(),

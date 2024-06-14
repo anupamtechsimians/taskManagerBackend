@@ -37,6 +37,11 @@ const Organisation = sequelize.define('organisation', {
         type: DataTypes.STRING,
         allowNull: true
     },
+    domain: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique:true,
+    },
     logoUrl: {
         type: DataTypes.STRING,
         allowNull: true
