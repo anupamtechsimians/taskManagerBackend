@@ -7,7 +7,9 @@ const sequelize = require('../../config/database');
 const create = async (req, res, next) => {
   const t = await sequelize.transaction();
   try {
-    const { name, email, password,metaData  } = req.body;
+    const { name, email, password,metaData,org_name  } = req.body;
+    if(!org_name){return res.status(400).json({message:"org_name is required"})}
+
     const emailExist = await User.findOne({where:{ email: email}});
     if(emailExist) {
       await t.rollback();
@@ -18,7 +20,7 @@ const create = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     // Create the user with the hashed password
     const user = await User.create({ name, email, password: hashedPassword,isSuper:1,metaData });
-    const org = await Org.create({email,ownerId:user.id});
+    const org = await Org.create({name:org_name,email,ownerId:user.id});
      await user.update({org_id:org.id},{where:{id:user.id}});
     const accessToken =  jwt.sign(
       { id: user.id, email: user.email,org_id:org.id},

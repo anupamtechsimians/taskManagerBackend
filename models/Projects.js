@@ -10,15 +10,11 @@ const Organisation = sequelize.define('projects', {
         type: DataTypes.STRING,
         allowNull: true
     },
-    status: {
-        type: DataTypes.STRING,
+    status_id: {
+        type: DataTypes.INTEGER,
         allowNull: true
     },
     priority: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    assignee: {
         type: DataTypes.STRING,
         allowNull: true
     },

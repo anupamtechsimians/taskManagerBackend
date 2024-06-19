@@ -6,13 +6,13 @@ const getAllUsers= async (req, res, next) => {
     try {
         const { start = 0, limit = 10,id_deleted,search } = req.query;
         const limitQuery = `LIMIT ${limit} OFFSET ${start}`;
-        const searchQuery = search?` and (u.name ilike '%${search}%'`:``;
-        const isActive = id_deleted?` and u.is_deleted =${id_deleted}`:'and u.is_deleted =false';
+        const searchQuery = search?` and (t.name ilike '%${search}%'`:``;
+        const isActive = id_deleted?` and t.is_active =${id_deleted}`:'and t.is_active =true';
 
-        const query = `select u.*, s.name as status_name,s.color as status_color from "projects" u left join status s on s.id =u.status_id where u.org_id = ${org_id} ${isActive}  ${searchQuery} ${limitQuery}`;
+        const query = `select t.name,t.color,t.is_active from "status" t where t.org_id = ${org_id} ${isActive}  ${searchQuery} ${limitQuery}`;
 
         const countQuery = `select count(*) as count 
-        from "projects" u where u.org_id = ${org_id} ${isActive}  ${searchQuery} ${limitQuery}`;
+        from "status" t where t.org_id = ${org_id} ${isActive}  ${searchQuery} ${limitQuery}`;
     
       const data = await sequelize.query(query,{type:QueryTypes.SELECT});
       const count = await sequelize.query(countQuery,{type:QueryTypes.SELECT});

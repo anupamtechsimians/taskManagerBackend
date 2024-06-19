@@ -9,7 +9,7 @@ const getAllUsers= async (req, res, next) => {
         const searchQuery = search?` and (u.name ilike '%${search}%'`:``;
         const isActive = id_deleted?` and u.is_deleted =${id_deleted}`:'and u.is_deleted =false';
 
-        const query = `select * from "user" u where u.org_id = ${org_id} ${isActive}  ${searchQuery} ${limitQuery}`;
+        const query = `select * from "users" u where u.org_id = ${org_id} ${isActive}  ${searchQuery} ${limitQuery}`;
 
         const countQuery = `select count(*) as count 
         from "user" u where u.org_id = ${org_id} ${isActive}  ${searchQuery} ${limitQuery}`;

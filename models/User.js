@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
 const User = sequelize.define(
-  "user",
+  "users",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -33,6 +33,7 @@ const User = sequelize.define(
       defaultValue:false,
       allowNull: true,
     },
+    profile_image:{type:DataTypes.STRING},
     org_id:{type:DataTypes.INTEGER},
     created_by:{type:DataTypes.INTEGER},
     metaData: {
@@ -41,7 +42,7 @@ const User = sequelize.define(
     },
   },
   {
-    tableName: "user",
+    tableName: "users",
     timestamps: true,
   }
 );

@@ -1,11 +1,11 @@
 const Joi = require('joi');
 
-const boardSchema = Joi.object({
+const statusSchema = Joi.object({
   name: Joi.string().required(),
   color: Joi.string().required(),
 
 });
-const boardUpdateSchema = Joi.object({
+const statusUpdateSchema = Joi.object({
   name: Joi.string(),
   color: Joi.string(),
   is_active: Joi.boolean(),
@@ -13,4 +13,4 @@ const boardUpdateSchema = Joi.object({
 });
 
 
-module.exports = {boardSchema,boardUpdateSchema};
+module.exports = {statusSchema,statusUpdateSchema};
